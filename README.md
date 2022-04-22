@@ -398,7 +398,7 @@ Content-Type: application/json; charset=utf-8
 The users that are logged in can create a group (using POST method).
 
 ```
-POST /group
+POST /api/chat/group
 {
     "name":"Ad Astra Sapientiam",
     "users": "[\"624ff9c4b93668500dd99e41\", \"624ffa1bb93668500dd99e44\", \"625049493175d81628338aea\"]"
