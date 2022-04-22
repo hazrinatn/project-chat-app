@@ -1,6 +1,6 @@
 # Transmit (Chat App) API
 
-This repository contains the full code and documentation for [transmit](https://transmit-chat-app.herokuapp.com/chats)’s API. This REST API allows users to receive and send messages through [transmit](https://transmit-chat-app.herokuapp.com/chats) account.
+This repository contains the full code and documentation for [transmit](https://transmit-chat-app.herokuapp.com/chats)’s API. This REST API allows users to receive and send messages through [transmit](https://transmit-chat-app.herokuapp.com/chats) account. The frontend side can be accessed [here](https://github.com/Sahlan009/FP_Frontend).
 
 #### Contents
 
