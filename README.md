@@ -27,6 +27,55 @@ Typically, the first request you make should be to acquire user details. This wi
 
 ### 3.1. Users
 
+#### User Registration
+
+Register user to get an access token.
+
+Example request:
+
+```
+POST /api/user
+{
+    "name": "Shinichi Kudo",
+    "email": "kudos@example.com",
+    "password": "bakerstreet221b"
+}
+```
+
+The response is a User object (id, name, email, pic, token) within a data envelope.
+
+Example response:
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{
+    "_id": "624fce32a08e9443f1ab833e",
+    "name": "Shinichi Kudo",
+    "email": "kudos@example.com",
+    "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGZjZTMyYTA4ZTk0NDNmMWFiODMzZSIsImlhdCI6MTY1MDY2ODAzMiwiZXhwIjoxNjUzMjYwMDMyfQ.d-mpYlxkQIY5Wmp2VL5gWjxNp1B6_sugVd2D-bJWofg"
+}
+```
+
+Where a full User object is:
+
+| Field      | Type    | Description                                          |
+| ---------- | ------- | ---------------------------------------------------- |
+| id         | string  | A unique identifier for the user.                    |
+| email      | string  | The user’s email (unique).                           |
+| password   | string  | The user’s password,hashed by bcrypt.                |
+| pic        | string  | The user’s profile picture (uploaded to cloudinary). |
+| isAdmin    | boolean | The user’s status in group chat                      |
+| timestamps | date    | The user’s sign up date                              |
+
+Possible errors:
+
+| Error code       | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| 401 Unauthorized | The `accessToken` is invalid or has been revoked. |
+
 #### Getting the authenticated user’s details
 
 Returns details of the user who has granted permission to the application.
