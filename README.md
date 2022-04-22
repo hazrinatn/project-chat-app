@@ -34,7 +34,7 @@ Returns details of the user who has granted permission to the application.
 Example request:
 
 ```
-POST /login/
+POST /api/user/login
 Host: localhost
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDQ2NDA4MzEsImV4cCI6MTY0NTI0NTYzMX0.miNjUnu6GssoM2yGP8CLH2ecNMPVpk06-vMfIQBau88
 Content-Type: application/json
@@ -72,14 +72,156 @@ Possible errors:
 | ---------------- | ------------------------------------------------- |
 | 401 Unauthorized | The `accessToken` is invalid or has been revoked. |
 
+#### Search User
+
+The users that are logged in can search other users using GET method and query paramter.
+
+```
+GET /api/user?search=w
+```
+
+The response is a list of other users that contain the inputted letter or words in their names or emails. The response array is wrapped in a data envelope.
+
+Example response:
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+[
+    {
+        "isAdmin": false,
+        "_id": "624ff6a5b93668500dd99e3b",
+        "name": "William Moriarty",
+        "email": "willmoriarty@example.com",
+        "password": "$2a$10$He7NWX0/3KpUbH05XrRXt.w7hzUeMv7PcULBjzinw25a/HZ7qE5Si",
+        "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+        "createdAt": "2022-04-08T08:47:33.067Z",
+        "updatedAt": "2022-04-08T08:47:33.067Z",
+        "__v": 0
+    },
+    {
+        "isAdmin": false,
+        "_id": "624ff9c4b93668500dd99e41",
+        "name": "Pawaret Sermrittirong",
+        "email": "pang@gifted.com",
+        "password": "$2a$10$DuPBT9j.DsWTTf68fO70LetE1SEbWnZxxBFa/aYZWL0Lal.7nfni.",
+        "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408452/ilenigem9dal1grjjggf.jpg",
+        "createdAt": "2022-04-08T09:00:52.902Z",
+        "updatedAt": "2022-04-08T09:00:52.902Z",
+        "__v": 0
+    },
+    {
+        "isAdmin": false,
+        "_id": "624ffa1bb93668500dd99e44",
+        "name": "Wasuthorn Worachotmethee",
+        "email": "wave@gifted.com",
+        "password": "$2a$10$8YkSZ3WFZsuXOVUJUCpktenNrpdgGnVsnPb.3tVKXHt6AEtcwslnS",
+        "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408534/pzaqfjg1hphosobx1bdj.jpg",
+        "createdAt": "2022-04-08T09:02:19.446Z",
+        "updatedAt": "2022-04-08T09:02:19.446Z",
+        "__v": 0
+    },
+    {
+        "isAdmin": false,
+        "_id": "625049493175d81628338aea",
+        "name": "Wichai Saingern",
+        "email": "ohm@gifted.com",
+        "password": "$2a$10$lB90DDij2ResC8aIAe3xrOm7QREPWjhyoZi9m/vF3z9g1q6Mn8vn.",
+        "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649428806/xwz3saif6rmheu6oc9zn.jpg",
+        "createdAt": "2022-04-08T14:40:09.050Z",
+        "updatedAt": "2022-04-08T14:40:09.050Z",
+        "__v": 0
+    }
+]
+```
+
 ### 3.2. Chats
 
 #### Create, Access, Fetch, Rename Group, Add User, Remove
 
 The users that are logged in can access one on one chats or group chats (using POST method), fetch chats (using GET method), create group (using POST method), rename group(using PUT method), add user to group (using PUT method) and remove user from group (using PUT method).
 
+#### Create
+
+The users that are logged in can create and access one on one chats or group chats (using POST method).
+
 ```
-GET /
+POST /api/chat
+{
+    "userId":"624ffa1bb93668500dd99e44"
+}
+```
+
+The response is a chat object. This endpoint will return all chats when the user is logged in.
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+[
+    {
+        "_id": "625acb3cfe85dbb000392ae6",
+        "chatName": "sender",
+        "isGroupChat": false,
+        "users": [
+            {
+                "isAdmin": false,
+                "_id": "624fce32a08e9443f1ab833e",
+                "name": "Shinichi Kudo",
+                "email": "kudos@example.com",
+                "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+                "createdAt": "2022-04-08T05:54:58.722Z",
+                "updatedAt": "2022-04-08T05:54:58.722Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624ffa1bb93668500dd99e44",
+                "name": "Wasuthorn Worachotmethee",
+                "email": "wave@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408534/pzaqfjg1hphosobx1bdj.jpg",
+                "createdAt": "2022-04-08T09:02:19.446Z",
+                "updatedAt": "2022-04-08T09:02:19.446Z",
+                "__v": 0
+            }
+        ],
+        "createdAt": "2022-04-16T13:57:16.678Z",
+        "updatedAt": "2022-04-16T13:58:06.195Z",
+        "__v": 0,
+        "latestMessage": {
+            "_id": "625acb6efe85dbb000392aed",
+            "sender": {
+                "_id": "624fce32a08e9443f1ab833e",
+                "name": "Shinichi Kudo",
+                "email": "kudos@example.com",
+                "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+            },
+            "content": "Mic check 1 2",
+            "chat": "625acb3cfe85dbb000392ae6",
+            "createdAt": "2022-04-16T13:58:06.116Z",
+            "updatedAt": "2022-04-16T13:58:06.116Z",
+            "__v": 0
+            }
+    }
+]
+```
+
+Where a chat object is:
+
+| Field       | Type    | Description                       |
+| ----------- | ------- | --------------------------------- |
+| id          | string  | A unique identifier for the chat. |
+| chatName    | string  | The group chat's name             |
+| isGroupChat | boolean | The chat's satus.                 |
+| users       | object  | The data from user object.        |
+
+#### Fetch Chats
+
+The users that are logged in can fetch chats (using GET method).
+
+```
+GET /api/chat
 ```
 
 The response is a list of chats. The response array is wrapped in a data envelope. This endpoint will return all chats when the user is logged in.
@@ -198,14 +340,9 @@ Content-Type: application/json; charset=utf-8
 ]
 ```
 
-Where a chat object is:
+#### Create a Group Chat
 
-| Field       | Type    | Description                       |
-| ----------- | ------- | --------------------------------- |
-| id          | string  | A unique identifier for the chat. |
-| chatName    | string  | The group chat's name             |
-| isGroupChat | boolean | The chat's satus.                 |
-| users       | object  | The data from user object.        |
+The users that are logged in can create a group (using POST method).
 
 ```
 POST /group
@@ -292,14 +429,306 @@ Possible errors:
 | ---------------- | ---------------------------------------------------------------------------- |
 | 401 Unauthorized | The `accessToken` is invalid, lacks the `isAdmin` scope or has been revoked. |
 
-### 3.3. Messages
+#### Rename a Group Chat
 
-#### Send and Fetch
-
-The users that are logged in can send messages on one on one chats or group chats (using POST method) and fetch all messages (using GET method).
+The users that are logged in can rename a group (using PUT method).
 
 ```
-POST /
+PUT /api/chat/rename
+{
+    "chatId": "62504a3c3175d81628338aef",
+    "chatName": "Too Cool For School"
+}
+```
+
+This endpoint will rename a group chat. The response array is wrapped in a data envelope.
+
+Example response:
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+[
+   {
+        "_id": "62504a3c3175d81628338aef",
+        "chatName": "Too Cool For School",
+        "isGroupChat": true,
+        "users": [
+            {
+                "isAdmin": false,
+                "_id": "624ff9c4b93668500dd99e41",
+                "name": "Pawaret Sermrittirong",
+                "email": "pang@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408452/ilenigem9dal1grjjggf.jpg",
+                "createdAt": "2022-04-08T09:00:52.902Z",
+                "updatedAt": "2022-04-08T09:00:52.902Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624ffa1bb93668500dd99e44",
+                "name": "Wasuthorn Worachotmethee",
+                "email": "wave@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408534/pzaqfjg1hphosobx1bdj.jpg",
+                "createdAt": "2022-04-08T09:02:19.446Z",
+                "updatedAt": "2022-04-08T09:02:19.446Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "625049493175d81628338aea",
+                "name": "Wichai Saingern",
+                "email": "ohm@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649428806/xwz3saif6rmheu6oc9zn.jpg",
+                "createdAt": "2022-04-08T14:40:09.050Z",
+                "updatedAt": "2022-04-08T14:40:09.050Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624fce32a08e9443f1ab833e",
+                "name": "Shinichi Kudo",
+                "email": "kudos@example.com",
+                "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+                "createdAt": "2022-04-08T05:54:58.722Z",
+                "updatedAt": "2022-04-08T05:54:58.722Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624ff6a5b93668500dd99e3b",
+                "name": "William Moriarty",
+                "email": "willmoriarty@example.com",
+                "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+                "createdAt": "2022-04-08T08:47:33.067Z",
+                "updatedAt": "2022-04-08T08:47:33.067Z",
+                "__v": 0
+            }
+        ],
+        "groupAdmin": {
+            "isAdmin": false,
+            "_id": "624fce32a08e9443f1ab833e",
+            "name": "Shinichi Kudo",
+            "email": "kudos@example.com",
+            "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+            "createdAt": "2022-04-08T05:54:58.722Z",
+            "updatedAt": "2022-04-08T05:54:58.722Z",
+            "__v": 0
+        },
+        "createdAt": "2022-04-08T14:44:12.848Z",
+        "updatedAt": "2022-04-22T22:46:41.848Z",
+        "__v": 0,
+        "latestMessage": "625cef9931a235b1a95d49cb"
+    }
+]
+```
+
+#### Add a User to a Group Chat
+
+The users that are admins can add other users to a group (using PUT method).
+
+```
+PUT /api/chat/groupadd
+{
+    "chatId": "62504a3c3175d81628338aef",
+    "userId": "624ff6a5b93668500dd99e3b"
+}
+```
+
+This endpoint will add other users to a group chat. The response array is wrapped in a data envelope.
+
+Example response:
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+[
+   {
+        "_id": "62504a3c3175d81628338aef",
+        "chatName": "Too Cool For School",
+        "isGroupChat": true,
+        "users": [
+            {
+                "isAdmin": false,
+                "_id": "624ff9c4b93668500dd99e41",
+                "name": "Pawaret Sermrittirong",
+                "email": "pang@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408452/ilenigem9{
+        "_id": "62504a3c3175d81628338aef",
+        "chatName": "Too Cool For School",
+        "isGroupChat": true,
+        "users": [
+            {
+                "isAdmin": false,
+                "_id": "624ff9c4b93668500dd99e41",
+                "name": "Pawaret Sermrittirong",
+                "email": "pang@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408452/ilenigem9dal1grjjggf.jpg",
+                "createdAt": "2022-04-08T09:00:52.902Z",
+                "updatedAt": "2022-04-08T09:00:52.902Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624ffa1bb93668500dd99e44",
+                "name": "Wasuthorn Worachotmethee",
+                "email": "wave@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408534/pzaqfjg1hphosobx1bdj.jpg",
+                "createdAt": "2022-04-08T09:02:19.446Z",
+                "updatedAt": "2022-04-08T09:02:19.446Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "625049493175d81628338aea",
+                "name": "Wichai Saingern",
+                "email": "ohm@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649428806/xwz3saif6rmheu6oc9zn.jpg",
+                "createdAt": "2022-04-08T14:40:09.050Z",
+                "updatedAt": "2022-04-08T14:40:09.050Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624fce32a08e9443f1ab833e",
+                "name": "Shinichi Kudo",
+                "email": "kudos@example.com",
+                "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+                "createdAt": "2022-04-08T05:54:58.722Z",
+                "updatedAt": "2022-04-08T05:54:58.722Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624ff6a5b93668500dd99e3b",
+                "name": "William Moriarty",
+                "email": "willmoriarty@example.com",
+                "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+                "createdAt": "2022-04-08T08:47:33.067Z",
+                "updatedAt": "2022-04-08T08:47:33.067Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624ff6a5b93668500dd99e3b",
+                "name": "William Moriarty",
+                "email": "willmoriarty@example.com",
+                "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+                "createdAt": "2022-04-08T08:47:33.067Z",
+                "updatedAt": "2022-04-08T08:47:33.067Z",
+                "__v": 0
+            }
+        ],
+        "groupAdmin": {
+            "isAdmin": false,
+            "_id": "624fce32a08e9443f1ab833e",
+            "name": "Shinichi Kudo",
+            "email": "kudos@example.com",
+            "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+            "createdAt": "2022-04-08T05:54:58.722Z",
+            "updatedAt": "2022-04-08T05:54:58.722Z",
+            "__v": 0
+        },
+        "createdAt": "2022-04-08T14:44:12.848Z",
+        "updatedAt": "2022-04-22T22:49:21.847Z",
+        "__v": 0,
+        "latestMessage": "625cef9931a235b1a95d49cb"
+    }
+]
+```
+
+#### Remove a User to a Group Chat
+
+The users that are admins can remove other users from a group (using PUT method).
+
+```
+PUT /api/chat/groupremove
+{
+    "chatId": "62504a3c3175d81628338aef",
+    "userId": "624ff6a5b93668500dd99e3b"
+}
+```
+
+This endpoint will add other users to a group chat. The response array is wrapped in a data envelope.
+
+Example response:
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+[
+   {
+        "_id": "62504a3c3175d81628338aef",
+        "chatName": "Too Cool For School",
+        "isGroupChat": true,
+        "users": [
+            {
+                "isAdmin": false,
+                "_id": "624ff9c4b93668500dd99e41",
+                "name": "Pawaret Sermrittirong",
+                "email": "pang@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408452/ilenigem9dal1grjjggf.jpg",
+                "createdAt": "2022-04-08T09:00:52.902Z",
+                "updatedAt": "2022-04-08T09:00:52.902Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624ffa1bb93668500dd99e44",
+                "name": "Wasuthorn Worachotmethee",
+                "email": "wave@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649408534/pzaqfjg1hphosobx1bdj.jpg",
+                "createdAt": "2022-04-08T09:02:19.446Z",
+                "updatedAt": "2022-04-08T09:02:19.446Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "625049493175d81628338aea",
+                "name": "Wichai Saingern",
+                "email": "ohm@gifted.com",
+                "pic": "http://res.cloudinary.com/dwusgfjtk/image/upload/v1649428806/xwz3saif6rmheu6oc9zn.jpg",
+                "createdAt": "2022-04-08T14:40:09.050Z",
+                "updatedAt": "2022-04-08T14:40:09.050Z",
+                "__v": 0
+            },
+            {
+                "isAdmin": false,
+                "_id": "624fce32a08e9443f1ab833e",
+                "name": "Shinichi Kudo",
+                "email": "kudos@example.com",
+                "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+                "createdAt": "2022-04-08T05:54:58.722Z",
+                "updatedAt": "2022-04-08T05:54:58.722Z",
+                "__v": 0
+            }
+        ],
+        "groupAdmin": {
+            "isAdmin": false,
+            "_id": "624fce32a08e9443f1ab833e",
+            "name": "Shinichi Kudo",
+            "email": "kudos@example.com",
+            "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+            "createdAt": "2022-04-08T05:54:58.722Z",
+            "updatedAt": "2022-04-08T05:54:58.722Z",
+            "__v": 0
+        },
+        "createdAt": "2022-04-08T14:44:12.848Z",
+        "updatedAt": "2022-04-22T22:52:08.925Z",
+        "__v": 0,
+        "latestMessage": "625cef9931a235b1a95d49cb"
+    }
+]
+```
+
+### 3.3. Messages
+
+#### Send Messages
+
+The users that are logged in can send messages on one on one chats or group chats (using POST method).
+
+```
+POST /api/message
 {
     "content": "Coffe or cake?",
     "chatId": "625ac3b66d3550322baa5d07"
@@ -362,8 +791,12 @@ Where a chat object is:
 | chat        | object | The chat object               |
 | timepstamps | date   | The time the message is sent. |
 
+#### Fetch Messages
+
+The users that are logged in can fetch all messages (using GET method).
+
 ```
-GET /:chatId
+GET /api/message/:chatId
 ```
 
 The response is a list of messages in a chat. The response array is wrapped in a data envelope. This endpoint will return all messages when the user is logged in.
