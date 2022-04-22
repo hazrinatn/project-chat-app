@@ -61,20 +61,14 @@ Content-Type: application/json; charset=utf-8
 
 Where a full User object is:
 
-| Field      | Type    | Description                                          |
-| ---------- | ------- | ---------------------------------------------------- |
-| id         | string  | A unique identifier for the user.                    |
-| email      | string  | The user’s email (unique).                           |
-| password   | string  | The user’s password,hashed by bcrypt.                |
-| pic        | string  | The user’s profile picture (uploaded to cloudinary). |
-| isAdmin    | boolean | The user’s status in group chat                      |
-| timestamps | date    | The user’s sign up date                              |
-
-Possible errors:
-
-| Error code       | Description                                       |
-| ---------------- | ------------------------------------------------- |
-| 401 Unauthorized | The `accessToken` is invalid or has been revoked. |
+| Field      | Type    | Description                                                         |
+| ---------- | ------- | ------------------------------------------------------------------- |
+| id         | string  | A unique identifier for the user.                                   |
+| email      | string  | The user’s email (unique).                                          |
+| password   | string  | The user’s password, hashed by bcrypt.                              |
+| pic        | string  | The user’s profile picture (link from uploaded file in cloudinary). |
+| isAdmin    | boolean | The user’s status in group chat                                     |
+| timestamps | date    | The user’s sign up date                                             |
 
 #### Getting the authenticated user’s details
 
