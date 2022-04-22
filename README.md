@@ -1,4 +1,4 @@
-# Project E-commerce API
+# Transmit (Chat App) API
 
 This repository contains the full code and documentation for [transmit](https://transmit-chat-app.herokuapp.com/chats)’s API. This REST API allows users to receive and send messages through [transmit](https://transmit-chat-app.herokuapp.com/chats) account.
 
