@@ -8,9 +8,8 @@ This repository contains the full code and documentation for [transmit](https://
 - [Authentication](#2-authentication)
 - [Resources](#3-resources)
   - [Users](#31-users)
-  - [Products](#32-products)
-- [Architecture Diagram](#4-architecture)
-- [Entity Relationship Diagram](#5-erd)
+  - [Chats](#32-chats)
+  - [Messages](#33-messages)
 
 ## 1. Overview
 
