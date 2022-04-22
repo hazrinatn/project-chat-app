@@ -35,14 +35,13 @@ Example request:
 
 ```
 POST /api/user/login
-Host: localhost
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDQ2NDA4MzEsImV4cCI6MTY0NTI0NTYzMX0.miNjUnu6GssoM2yGP8CLH2ecNMPVpk06-vMfIQBau88
-Content-Type: application/json
-Accept: application/json
-Accept-Charset: utf-8
+{
+    "email": "kudos@example.com",
+    "password": "bakerstreet221b"
+}
 ```
 
-The response is a User object id within a data envelope.
+The response is a User object (id, name, email, pic, token) within a data envelope.
 
 Example response:
 
@@ -51,7 +50,11 @@ HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 
 {
- "user": "621a0a5b4280f7543ca2b871"
+    "_id": "624fce32a08e9443f1ab833e",
+    "name": "Shinichi Kudo",
+    "email": "kudos@example.com",
+    "pic": "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGZjZTMyYTA4ZTk0NDNmMWFiODMzZSIsImlhdCI6MTY1MDY2ODAzMiwiZXhwIjoxNjUzMjYwMDMyfQ.d-mpYlxkQIY5Wmp2VL5gWjxNp1B6_sugVd2D-bJWofg"
 }
 ```
 
@@ -78,9 +81,14 @@ The users that are logged in can search other users using GET method and query p
 
 ```
 GET /api/user?search=w
+Host: localhost
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDQ2NDA4MzEsImV4cCI6MTY0NTI0NTYzMX0.miNjUnu6GssoM2yGP8CLH2ecNMPVpk06-vMfIQBau88
+Content-Type: application/json
+Accept: application/json
+Accept-Charset: utf-8
 ```
 
-The response is a list of other users that contain the inputted letter or words in their names or emails. The response array is wrapped in a data envelope.
+The response is a list of other users that contain the inputted letter or words in their names or emails. The response is wrapped in a data envelope.
 
 Example response:
 
@@ -88,7 +96,7 @@ Example response:
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 
-[
+
     {
         "isAdmin": false,
         "_id": "624ff6a5b93668500dd99e3b",
