@@ -146,11 +146,7 @@ Content-Type: application/json; charset=utf-8
 
 ### 3.2. Chats
 
-#### Create, Access, Fetch, Rename Group, Add User, Remove
-
-The users that are logged in can access one on one chats or group chats (using POST method), fetch chats (using GET method), create group (using POST method), rename group(using PUT method), add user to group (using PUT method) and remove user from group (using PUT method).
-
-#### Create
+#### Create Chats
 
 The users that are logged in can create and access one on one chats or group chats (using POST method).
 
@@ -645,7 +641,7 @@ Content-Type: application/json; charset=utf-8
 ]
 ```
 
-#### Remove a User to a Group Chat
+#### Remove a User from a Group Chat
 
 The users that are admins can remove other users from a group (using PUT method).
 
