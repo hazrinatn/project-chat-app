@@ -1198,18 +1198,3 @@ Content-Type: application/json; charset=utf-8
     }
 ]
 ```
-
-Where a chat object is:
-
-| Field       | Type    | Description                       |
-| ----------- | ------- | --------------------------------- |
-| id          | string  | A unique identifier for the chat. |
-| chatName    | string  | The group chat's name             |
-| isGroupChat | boolean | The chat's satus.                 |
-| users       | object  | The data from user object.        |
-
-Possible errors:
-
-| Error code       | Description                                                                  |
-| ---------------- | ---------------------------------------------------------------------------- |
-| 401 Unauthorized | The `accessToken` is invalid, lacks the `isAdmin` scope or has been revoked. |
