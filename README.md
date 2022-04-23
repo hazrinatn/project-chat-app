@@ -836,9 +836,9 @@ Where a chat object is:
 
 | Field       | Type   | Description                   |
 | ----------- | ------ | ----------------------------- |
-| sender      | object | The user object.              |
+| sender      | object | The data from user object.    |
 | content     | string | The message.                  |
-| chat        | object | The chat object               |
+| chat        | object | The data from chat object.    |
 | timepstamps | date   | The time the message is sent. |
 
 #### Fetch Messages
