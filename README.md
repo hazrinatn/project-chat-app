@@ -2,7 +2,7 @@
 
 This repository contains the full code and documentation for [transmit](https://transmit-chat-app.herokuapp.com)’s API. This REST API allows users to receive and send messages through [transmit](https://transmit-chat-app.herokuapp.com) account. The frontend side can be accessed [here](https://github.com/Sahlan009/FP_Frontend).
 
-#### Contents
+#### Contents :bookmark:
 
 - [Overview](#1-overview)
 - [Authentication](#2-authentication)
@@ -11,15 +11,15 @@ This repository contains the full code and documentation for [transmit](https://
   - [Chats](#32-chats)
   - [Messages](#33-messages)
 
-## 1. Overview
+## 1. Overview :bulb:
 
 This API is a JSON-based OAuth2 bearer token API. The token is generated using JSON Web Token (JWT).
 
-## 2. Authentication
+## 2. Authentication :closed_lock_with_key:
 
 In order to receive and send messages, users will need an access token. An access token grants limited access to a user’s account.
 
-## 3. Resources
+## 3. Resources :open_file_folder:
 
 The API is RESTful and arranged around resources. All requests must be made with an integration token.
 
