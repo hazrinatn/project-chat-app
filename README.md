@@ -67,8 +67,8 @@ Where a full User object is:
 | email      | string  | The user’s email (unique).                                          |
 | password   | string  | The user’s password, hashed by bcrypt.                              |
 | pic        | string  | The user’s profile picture (link from uploaded file in cloudinary). |
-| isAdmin    | boolean | The user’s status in group chat                                     |
-| timestamps | date    | The created at and updated at time                                  |
+| isAdmin    | boolean | The user’s status in group chat.                                    |
+| timestamps | date    | The created at and updated at time.                                 |
 
 #### Getting the authenticated user’s details
 
@@ -109,8 +109,8 @@ Where a full User object is:
 | email      | string  | The user’s email (unique).                                          |
 | password   | string  | The user’s password, hashed by bcrypt.                              |
 | pic        | string  | The user’s profile picture (link from uploaded file in cloudinary). |
-| isAdmin    | boolean | The user’s status in group chat                                     |
-| timestamps | date    | The created at and updated at time                                  |
+| isAdmin    | boolean | The user’s status in group chat.                                    |
+| timestamps | date    | The created at and updated at time.                                 |
 
 Possible errors:
 
@@ -256,15 +256,15 @@ Content-Type: application/json; charset=utf-8
 
 Where a chat object is:
 
-| Field         | Type    | Description                        |
-| ------------- | ------- | ---------------------------------- |
-| id            | string  | A unique identifier for the chat.  |
-| chatName      | string  | The group chat's name              |
-| isGroupChat   | boolean | The chat's satus.                  |
-| users         | object  | The data from user object.         |
-| latestMessage | object  | The data from message object.      |
-| groupAdmin    | object  | The data from user object.         |
-| timestamps    | date    | The created at and updated at time |
+| Field         | Type    | Description                         |
+| ------------- | ------- | ----------------------------------- |
+| id            | string  | A unique identifier for the chat.   |
+| chatName      | string  | The group chat's name               |
+| isGroupChat   | boolean | The chat's status.                  |
+| users         | object  | The data from user object.          |
+| latestMessage | object  | The data from message object.       |
+| groupAdmin    | object  | The data from user object.          |
+| timestamps    | date    | The created at and updated at time. |
 
 #### Fetch Chats
 
