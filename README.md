@@ -832,7 +832,7 @@ Content-Type: application/json; charset=utf-8
 ]
 ```
 
-Where a chat object is:
+Where a message object is:
 
 | Field       | Type   | Description                   |
 | ----------- | ------ | ----------------------------- |
